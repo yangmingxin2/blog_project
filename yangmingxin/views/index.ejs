@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            height: 26px;
+            background: mediumpurple;
+            margin-top: 10px;
+            list-style: none;
+            padding-left: 20px;
+            line-height: 26px;
+        }
+        
+        .zhuc {
+            background: sandybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <div><span class='zhuc'>注册</span></div>
+    <ul>
+        <%for(var i in num){%>
+            <li data-id="<%=num[i].id%>">
+                <%=num[i].name%>
+            </li>
+            <%}%>
+    </ul>
+</body>
+<script src='jquery-1.8.3.min.js'></script>
+<script>
+    $('ul').on('click', 'li', function() {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: "/detil",
+            type: "get",
+            data: {
+                id: id
+            },
+            success: function(data) {
+                console.log(data)
+            }
+        })
+    })
+
+    $('.zhuc').on('click', function() {
+        window.location.href = 'add' // 路由
+    })
+</script>
+
+</html>

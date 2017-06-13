@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>
+        名称： <input type="text" name="" value="">
+        <br><br>
+        <div class='cont'>
+            <p>内容：</p>
+            <textarea rows="" cols="" name=''></textarea>
+        </div>
+        <button class="btn">提交</button>
+        <button class='mulu'>目录页</button>
+    </div>
+</body>
+<script src='jquery1.7.js'></script>
+<script>
+    $(".btn").on("click", function() {
+        var inVal = $('input').val();
+        var textVal = $('textarea').val();
+        if (inVal != '' && textVal != '') {
+            $.ajax({
+                url: "/addCon", // 路由
+                type: "post",
+                data: {
+                    inVal: inVal,
+                    textVal: textVal
+                },
+                success: function(data) {
+                    console.log(data)
+                }
+            })
+        } else {
+            alert('请完善内容')
+        }
+
+    })
+    $('.mulu').on('click', function() {
+        window.location.href = 'index' // 路由
+    })
+</script>
+
+</html>
